@@ -9,7 +9,7 @@ class Stack extends cdk.Stack {
 
     const lambda = new Lambda.Function(this, 'helloWorldFunction', {
       runtime: Lambda.Runtime.NODEJS_20_X,
-      code: Lambda.Code.fromAsset('dist'),
+      code: Lambda.Code.fromAsset('../dist'),
       handler: 'bundle.handler',
       functionName: 'helloWorldFunction',
     });

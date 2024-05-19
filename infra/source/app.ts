@@ -3,6 +3,7 @@ import 'source-map-support/register';
 
 import * as cdk from 'aws-cdk-lib';
 import ApplicationStack from './stack';
+import Pipeline from './pipeline';
 
 const app = new cdk.App();
-new ApplicationStack(app, 'InfraStack', {});
+new Pipeline(app, 'Pipeline');

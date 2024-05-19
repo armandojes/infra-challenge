@@ -4,20 +4,20 @@ import { CodeBuildStep, CodePipeline, CodePipelineSource } from 'aws-cdk-lib/pip
 import { Bucket } from 'aws-cdk-lib/aws-s3';
 import Stage from './Stage';
 
-class SupervisionPipeline extends cdk.Stack {
-  constructor(scope: Construct, id: string, branchName: string, props?: cdk.StackProps) {
+class Pipeline extends cdk.Stack {
+  constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props)
 
     /**
      * create a bucket to store the artifacts
      * this bucket will be used by the pipeline
      */
-    const artifactsBucket = new Bucket(this, 'ArmandoGeneralArtifacts', {
-      bucketName: 'ArmandoGeneralArtifacts',
+    const artifactsBucket = new Bucket(this, 'armando-artifacts', {
+      bucketName: 'armando-artifacts',
       removalPolicy: cdk.RemovalPolicy.DESTROY
     })
 
-    const pipeline = new CodePipeline(this, 'SupervisionPipeline', {
+    const pipeline = new CodePipeline(this, 'Pipeline', {
       pipelineName: 'firstPipeline',
       synth: new CodeBuildStep('CompileInfraAndCode', {
         input: CodePipelineSource.gitHub('armandojes/infra-challenge', 'master'),
@@ -30,4 +30,4 @@ class SupervisionPipeline extends cdk.Stack {
   }
 }
 
-export default SupervisionPipeline
+export default Pipeline
