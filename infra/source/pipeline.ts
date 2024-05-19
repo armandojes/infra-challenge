@@ -21,7 +21,7 @@ class Pipeline extends cdk.Stack {
       pipelineName: 'firstPipeline',
       synth: new CodeBuildStep('CompileInfraAndCode', {
         input: CodePipelineSource.gitHub('armandojes/infra-challenge', 'master'),
-        commands: ['npm ci', 'npx cdk synth'],
+        commands: ['cd ../', 'npm install', 'npm run build', 'cd infra', 'npm ci', 'npx cdk synth'],
       }),
       artifactBucket: artifactsBucket,
     });
