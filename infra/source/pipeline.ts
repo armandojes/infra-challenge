@@ -30,6 +30,7 @@ class Pipeline extends cdk.Stack {
           'npx cdk synth',
           'ls'
         ],
+        primaryOutputDirectory: 'infra/cdk.out'
       }),
       artifactBucket: artifactsBucket,
     });
